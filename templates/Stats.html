@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <!-- Site Metas -->
+    <title>Securitest</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="/static/image/x-icon" />
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="/static/css/versions.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+    <!-- Modernizer for Portfolio -->
+    <script src="/static/js/modernizer.js"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style>
+
+    table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body class="host_version">
+
+
+
+    <!-- LOADER -->
+	<div id="preloader">
+		<div class="loader-container">
+			<div class="progress-br float shadow">
+				<div class="progress__item"></div>
+			</div>
+		</div>
+	</div>
+	<!-- END LOADER -->
+
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/adminack">Admin Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="/question_start">Test</a></li>
+						<li class="nav-item active"><a class="nav-link" href="/stats">User Stats</a></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+<div id="home" class="first-section" style="background-image:url('/static/images/1.jpg');">
+
+{%if un==''%}
+<style>
+    .card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width:50%;
+  margin-left:25%;
+    margin-top:10%;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+.button2 {
+  background-color:#4C5A7D ;
+  color: white;
+  border: 2px solid #4C5A7D;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.button2:hover {
+  background-color: #4C5A7D;
+  color: black;
+
+}
+</style>
+<br>
+<br>
+<br>
+<br>
+<div class="card" style="color:white">
+
+  <div class="container">
+<center>
+
+    <br><br>
+    <div class="big-tagline">
+<center><b><h1 style="color: #4c5a7d ">Stats</h1></b></center>
+</div>
+
+    <center>
+<h3>Enter your Student ID to see your all-time performance statistics!</h3>
+</center>
+<br><br>
+<form method="post">
+    <center>Your USN:</center>
+    <center><input type="text" name="usn"  placeholder="Your Student ID" required>
+    <br><br><br>
+
+        <input type = "submit"  value="Show Stats" class="button2">
+        <br>
+        <br>
+        <br>
+        </center>
+</form>
+  </div>
+</div>
+
+
+</div>
+{%else%}
+<br><br>
+<div class="card">
+<div class="container">
+{%if im!=''%}
+<div class="big-tagline">
+<center><b><h1 style="color: #4c5a7d ">Stats</h1></b></center>
+</div>
+
+
+
+<center><h3>Student ID: {{un}}</h3><br>
+Number of tests attempted: {{cnt}}<br>
+</center>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Score</th>
+  </tr>
+
+  {%for i in range(cnt)%}
+  <tr>
+    <td>{{stats[i].date}}</td>
+    <td>{{stats[i].score}}</td>
+  </tr>
+
+
+
+  {%endfor%}
+
+</table>
+<br>
+<br>
+<center>Performance Graph: <br><image src= "{{im}}"></image></center>
+{%endif%}
+{%endif%}
+</div>
+</div>
+    <!-- ALL JS FILES -->
+    <script src="/static/js/all.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="/static/js/custom.js"></script>
+	<script src="/static/js/timeline.min.js"></script>
+	<script>
+		timeline(document.querySelectorAll('.timeline'), {
+			forceVerticalMode: 700,
+			mode: 'horizontal',
+			verticalStartPosition: 'left',
+			visibleItems: 4
+		});
+	</script>
+</div>
+</body>
+</html>

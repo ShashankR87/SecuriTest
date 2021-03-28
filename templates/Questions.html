@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <!-- Site Metas -->
+    <title>Test Site</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="/static/image/x-icon" />
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="/static/css/versions.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+    <!-- Modernizer for Portfolio -->
+    <script src="/static/js/modernizer.js"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style>
+
+    table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  padding: 50px;
+  font-size: 20px;
+
+}
+</style>
+<style>
+    .card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width:50%;
+  margin-left:25%;
+    margin-top:10%;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+.button2 {
+  background-color:#4C5A7D ;
+  color: white;
+  border: 2px solid #4C5A7D;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.button2:hover {
+  background-color: #4C5A7D;
+  color: black;
+
+}
+</style>
+    <!-- ALL JS FILES -->
+    <script src="/static/js/all.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="/static/js/custom.js"></script>
+	<script src="/static/js/timeline.min.js"></script>
+
+</head>
+<script>
+    function tabFocus(){
+        console.log('tabfocus');
+
+        document.addEventListener('visibilitychange', () => { if (document.hidden) {
+            window.alert("Tab changed. Test will be invalidated.");
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/question', true);
+            xhr.send();
+            window.location.href='/'
+            //if(!alert("Success.")) {window.location.href='/'}
+            //if(!alert("Tab changed. Test will be invalidated.")) {console.log('siddu'); window.location.href='/'}
+        }
+
+        });
+
+    }
+    function disableClick(){
+        document.getElementById('l1').addEventListener('click',(event)=>{event.preventDefault(); alert("Hey, no clicking"); });
+        document.getElementById('l2').addEventListener('click',(event)=>{event.preventDefault(); alert("Hey, no clicking")});
+        document.getElementById('l3').addEventListener('click',(event)=>{event.preventDefault(); alert("Hey, no clicking")});
+        document.getElementById('l4').addEventListener('click',(event)=>{event.preventDefault(); alert("Hey, no clicking")});
+    }
+    function enableClick(){
+        document.getElementById('l1').removeEventListener('click');
+        document.getElementById('l2').removeEventListener('click');
+        document.getElementById('l3').removeEventListener('click');
+        document.getElementById('l4').removeEventListener('click');
+    }
+</script>
+<body class="host_version">
+
+
+    <!-- LOADER -->
+	<div id="preloader">
+		<div class="loader-container">
+			<div class="progress-br float shadow">
+				<div class="progress__item"></div>
+			</div>
+		</div>
+	</div>
+	<!-- END LOADER -->
+
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid" >
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host" >
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="/" id='l1' >Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/adminack" id='l2'>Admin Login</a></li>
+						<li class="nav-item active"><a class="nav-link" href="/question_start" id='l3'>Test</a></li>
+						<li class="nav-item"><a class="nav-link" href="/stats" id='l4'>User Stats</a></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+<div style="padding: 25px 50px">
+	<div class="big-tagline">
+    <center><b><h1 class="headings" style="color:#4c5a7d ">Online Test </h1></b></center>
+
+
+</div>
+
+
+
+    {%if text!= ''%}
+    <center><h2 style="color:red">{{text}}</h2></center>
+    {%else%}
+    {%if last!=''%}
+    <h3>Test date: {{last}}</h3><br><br>
+    {%endif%}
+
+
+
+
+     <form method="post" name="Ans">
+
+        {%if score!= ''%}
+   <center><h1>Your score = {{score}}</h1></center>
+
+        <br>
+        <br>
+    {%endif%}
+    {%if inc!= ''%}
+    <h3>Answer Report</h3><br><br>
+
+ <table>
+          <tr>
+            <th>Question</th>
+            <th>Your Answer</th>
+            <th>Result</th>
+          </tr>
+
+          {%for in in inc%}
+          <tr>
+            <td>
+        Question {{inc[in][2]}}
+         <img src="{{in}}" />
+
+         </td>
+            <td>{{inc[in][1]}}</td>
+            <td>
+                {%if inc[in][0]=='Correct'%}
+                    <h4 style="color: green">{{inc[in][0]}}</h4>
+                {%else%}
+                <h4 style="color: red">{{inc[in][0]}}</h4>
+                {%endif%}
+            </td>
+
+          </tr>
+
+          {%endfor%}
+
+        </table>
+{%endif%}
+
+
+
+
+
+        {%if ques != '' and allc=='' %}
+
+
+        <strong style="float:right">Time Left:</strong><br>
+        <div class="sticky"><p id="timer" style="float:right; font-size:30px"></p></div>
+
+
+<br>
+        {%if ques == 'None'%}
+          <center>Sorry, there is no test scheduled today.</center>
+          {%else%}
+
+
+        <div onload="tabFocus()">
+            <script>
+                tabFocus();
+                disableClick();
+            </script>
+         <center>Your Student ID:</center>
+         <center><input type="text" name="usn"  placeholder="Student ID" required></center>
+         <br>
+
+         <br>
+
+         <table>
+          <tr>
+            <th>Question</th>
+            <th>Answer</th>
+          </tr>
+
+        {%for q in range(cnt)%}
+        <tr>
+            <td>Question {{q+1}}:<br>
+                <img src="{{ans[q]}}"  />
+            </td>
+            <td><select name="{{ans[q]}}" id="{{ans[q]}}">
+            <option value="None"> -- Select an option -- </option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select></td>
+        </tr>
+
+        {%endfor%}
+
+        </table>
+
+        <br>
+        <br>
+        <center>
+            <input type = "submit" class="button2" id="sub" onclick="enableClick();">
+        </center>
+        <br>
+        <br>
+
+        </div>
+        {%endif%}
+
+        {%endif%}
+
+
+
+
+
+
+
+    </form>
+
+{% if allc=='Y'%}
+{% if ques != 'None'%}
+        <h2>Click on the button to start the test!</h2>
+        <p>Instructions: <br>
+        <ul>
+            <li>Before attempting the test, enter your <strong>Student ID.</strong><br></li>
+            <li>There is a timer for 30 minutes. You can either submit you answers before the time limit or else your responses will be automatically submitted after 30 min.</li>
+            <li>You can submit your answers ONLY once.</li>
+            <li>If you switch your browser tabs midway, your test will be invalidated.</li>
+            <li>You can also see your all-time stats in the User Stats Tab!</li>
+            <strong><li>Please note that the questions are random.</li></strong>
+        </ul>
+        </p>
+        <form action='/question'>
+            <input type = "submit" class="button2" value="Start Test" >
+        </form>
+        <p> The test ends on {{ques}}</p><br>
+        <h5 style="color:white">{{ip}}</h5>
+{%else%}
+Sorry, there is no test scheduled today.
+{%endif%}
+{%endif%}
+{%endif%}
+</div>
+
+</body>
+<script>
+
+    //window.open('http://shashankr.pythonanywhere.com/', '_blank', 'location=no,hidden=yes,toolbar=no');
+    function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+    }
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+    }
+
+var startTime = new Date().getTime();
+var distance
+
+// Set the date we're counting down to
+//var countDownDate = startTime + 18000;
+var countDownDate = startTime + 1800000;
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+    document.getElementById("l1").disabled=true;
+    document.getElementById("l2").disabled=true;
+    document.getElementById("l3").disabled=true;
+    document.getElementById("l4").disabled=true;
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+
+  // Time calculations for days, hours, minutes and seconds
+
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+  console.log(minutes);
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("timer").innerHTML = "EXPIRED";
+    var subButton = document.getElementById("sub");
+    document.getElementById("l1").disabled=false;
+    document.getElementById("l2").disabled=false;
+    document.getElementById("l3").disabled=false;
+    document.getElementById("l4").disabled=false;
+    document.getElementById("topbar").style.display = "block";
+
+    subButton.click();
+    subButton.disabled=true;
+  }
+}, 1000);
+
+
+
+function enable() {
+  document.getElementById("topbar").style.display = "block";
+  debug.log('Enable');
+  return true;
+}
+
+
+    </script>
+
+</html>
